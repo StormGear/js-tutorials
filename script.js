@@ -1,24 +1,17 @@
-const firstname = "Alan";
-const lastname = "Turing";
+const firstname = 'Alan';
+const lastname = 'Turing';
+let drinking = 'beer';
+let age = 12;
+let message;
 
-let val;
+const drink = () => {
+    if (age > 18) {
+        return 'beer';
+    } else {
+        return 'coke';
+    }
+}
 
-// concatenate
-val = firstname + lastname;
-val = firstname + ' ' + lastname;
-
-// Append
-val = 'Alan ';
-val += 'Turing';
-
-// Escaping
-val = 'That\'s awesome, I can\'t wait';
-
-// Length
-val = firstname.length;
-
-// Concat
-val = firstname.concat(' ', lastname,);
-
-
-console.log(val);
+message = 'Hello, my name is ' + firstname + ' ' + lastname + ' and I like ' + drinking + '.';
+message = `Hello, my name is ${firstname} ${lastname} and I like ${age > 18 ? 'beer' : 'coke'}.`;
+console.log(message);
