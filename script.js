@@ -1,20 +1,32 @@
-let item;
+let val;
+// number to string
+val = 999;
+val = String(val);
+val = true;
+// date to string
+val = new Date();
+val = val.toString();
 
-item = 'Hello World!';
+// array to string
+val = [1, 2, 3, 4, 5];
+val = val.toString();
 
-item = 100;
+// string to number
+val = '5';
+val = Number(val);
 
-item = true;
+val = null;
+val = Number(val);
 
-item = null;
+val = parseInt('100.30');
+val = parseFloat('100.31');
 
-item = Symbol();
+const num1 = 8;
+const num2 = 18;
+console.log(num1 + num2);
 
-item = {};
 
-item = [];
 
-item = function() {};
-
-item = new Date();
-console.log('datatype:',typeof item);
+console.log(val);
+console.log(typeof val);
+console.log(val.toFixed(2));
