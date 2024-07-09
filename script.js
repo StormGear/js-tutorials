@@ -1,22 +1,20 @@
-var personName  = 'Alan Turing';
+let item;
 
-console.log(personName);
-personName = 'John von Neumann';
-console.log(personName);
+item = 'Hello World!';
 
-var $name = 'Grace Hopper';
-console.log($name);
+item = 100;
 
-var _name = 'Margaret Hamilton';
-console.log(_name);
+item = true;
 
-const user = {
-    name: 'Ada Lovelace',
-    age: 30
-    };
-user.name = 'Grace Hopper';
+item = null;
 
-console.log(user);
+item = Symbol();
 
-const arr = [];
-console.log(arr);
+item = {};
+
+item = [];
+
+item = function() {};
+
+item = new Date();
+console.log('datatype:',typeof item);
