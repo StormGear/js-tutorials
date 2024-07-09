@@ -1,32 +1,23 @@
-let val;
-// number to string
-val = 999;
-val = String(val);
-val = true;
-// date to string
-val = new Date();
-val = val.toString();
-
-// array to string
-val = [1, 2, 3, 4, 5];
-val = val.toString();
-
-// string to number
-val = '5';
-val = Number(val);
-
-val = null;
-val = Number(val);
-
-val = parseInt('100.30');
-val = parseFloat('100.31');
-
 const num1 = 8;
-const num2 = 18;
-console.log(num1 + num2);
+const num2 = 6;
 
+let val;
+// division
+val = num1 / num2;
+// remainder
+val = num1 % num2;
 
+val = Math.PI;
+val = Math.E;
+val = Math.round(2.4);
+val = Math.ceil(2.4);
+val = Math.floor(2.8);
+val = Math.sqrt(64);
+val = Math.abs(-3);
+val = Math.pow(8, 2);
+val = Math.min(2, 33, 4, 1, 55, 6, 3, -2);
+val = Math.max(2, 33, 4, 1, 55, 6, 3, -2);
+val = Math.random();
+val = Math.floor(Math.random() * 5 + 1);
 
 console.log(val);
-console.log(typeof val);
-console.log(val.toFixed(2));
