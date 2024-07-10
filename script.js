@@ -1,25 +1,36 @@
-function user(name = 'Mary', age = 80) {
-    return 'Name: ' + name + ', Age: ' + age;
-}
+// const username = prompt('What is your name?')
+// alert(`Hello, ${username}`)
 
-// console.log(user('Alan', 20)); 
+// if (confirm('Are you sure to delete?')) {
+//     alert('The file is deleted.')
+// } else {
+//     alert('Nothing is deleted')
+// }
 
-const sum = (a = 2, b = 3) => a + b;
+// window.sessionStorage.setItem('name', 'John Kofi')
+// console.log(window.sessionStorage.getItem('name'))
 
-console.log(sum());
+// window.localStorage.setItem('name', 'John Doe')
+// console.log(window.localStorage.getItem('name'))
 
-// immediately invoked function expression
-(function() {
-    console.log('IIFE');
-})();
+// console.log(window.atob('RzVKZ01KeTpjNTAxNjRiMzMyODc0OWUzYTM3YjBlZWIyMmUxZDUwNg=='))
+// console.log(window.btoa('G5JgMJy:c50164b3328749e3a37b0eeb22e1d506'))
 
-const person = {
-    hello: 'John',
-    age: 30,
-    greet()  {
-        console.log('Hello there!');
-    }
-};
+// console.log(outerHeight, innerHeight, outerWidth, innerWidth);
+// console.log(screenX, screenY, screenLeft, screenTop);
 
-person.greet();
+// Redirect
+// location.href = 'https://www.google.com'
+
+// Reload
+// location.reload()
+
+// History
+// history.go(-1)
+
+// Navigator object
+console.log(navigator.)
+
+
+
 
