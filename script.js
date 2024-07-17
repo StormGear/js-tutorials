@@ -1,36 +1,46 @@
-// const username = prompt('What is your name?')
-// alert(`Hello, ${username}`)
+// let doc = document;
+// console.log(doc.all);
 
-// if (confirm('Are you sure to delete?')) {
-//     alert('The file is deleted.')
-// } else {
-//     alert('Nothing is deleted')
-// }
+// console.log(doc.all[1]);
 
-// window.sessionStorage.setItem('name', 'John Kofi')
-// console.log(window.sessionStorage.getItem('name'))
+// const li = document.createElement('li');
+// li.className = 'collection-item';
+// li.id = 'new-item';
+// li.setAttribute('title', 'New Item');
+// li.appendChild(document.createTextNode('A new item'));
 
-// window.localStorage.setItem('name', 'John Doe')
-// console.log(window.localStorage.getItem('name'))
 
-// console.log(window.atob('RzVKZ01KeTpjNTAxNjRiMzMyODc0OWUzYTM3YjBlZWIyMmUxZDUwNg=='))
-// console.log(window.btoa('G5JgMJy:c50164b3328749e3a37b0eeb22e1d506'))
 
-// console.log(outerHeight, innerHeight, outerWidth, innerWidth);
-// console.log(screenX, screenY, screenLeft, screenTop);
+// document.querySelector('div.item-1').appendChild(li);
 
-// Redirect
-// location.href = 'https://www.google.com'
+// const oldHeading = document.querySelector('h1');
+// const newHeading = document.createElement('h2');
+// newHeading.id = 'name-title';
+// newHeading.appendChild(document.createTextNode('New Heading'));
 
-// Reload
-// location.reload()
+// oldHeading.parentElement.replaceChild(newHeading, oldHeading);
 
-// History
-// history.go(-1)
+// const btn = document.querySelector('.submit-btn')
+// btn.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     console.log('clicked');
+//     console.log(e.target.innerText);
+// });
 
-// Navigator object
-console.log(navigator.)
+document.body.addEventListener('click', addFavorite);
 
+function addFavorite(e) {
+    // console.log(e.target);
+   
+        console.log('Favorite clicked');
+
+        if (e.target.parentElement.parentElement.style['background-color'] === 'yellow') {
+            e.target.parentElement.parentElement.style['background-color'] = 'white';
+        } else {
+            e.target.parentElement.parentElement.style['background-color'] = 'yellow';
+        }
+    
+}
 
 
 
