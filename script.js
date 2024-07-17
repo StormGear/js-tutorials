@@ -1,46 +1,24 @@
-// let doc = document;
-// console.log(doc.all);
+localStorage.setItem('name', 'John');
+localStorage.setItem('age', 30);
 
-// console.log(doc.all[1]);
+// set session storage
+sessionStorage.setItem('name', 'Beth');
+sessionStorage.setItem('age', 25);
 
-// const li = document.createElement('li');
-// li.className = 'collection-item';
-// li.id = 'new-item';
-// li.setAttribute('title', 'New Item');
-// li.appendChild(document.createTextNode('A new item'));
+localStorage.removeItem('name');
+localStorage.removeItem('age');
+
+let localname = localStorage.getItem('name');
+let age = localStorage.getItem('age');
+let sessionName = sessionStorage.getItem('name');
 
 
 
-// document.querySelector('div.item-1').appendChild(li);
 
-// const oldHeading = document.querySelector('h1');
-// const newHeading = document.createElement('h2');
-// newHeading.id = 'name-title';
-// newHeading.appendChild(document.createTextNode('New Heading'));
+console.log(`Name: ${localname}, Age: ${age}`);
+console.log(`Session Name: ${sessionName}`);
 
-// oldHeading.parentElement.replaceChild(newHeading, oldHeading);
 
-// const btn = document.querySelector('.submit-btn')
-// btn.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     console.log('clicked');
-//     console.log(e.target.innerText);
-// });
-
-document.body.addEventListener('click', addFavorite);
-
-function addFavorite(e) {
-    // console.log(e.target);
-   
-        console.log('Favorite clicked');
-
-        if (e.target.parentElement.parentElement.style['background-color'] === 'yellow') {
-            e.target.parentElement.parentElement.style['background-color'] = 'white';
-        } else {
-            e.target.parentElement.parentElement.style['background-color'] = 'yellow';
-        }
-    
-}
 
 
 
