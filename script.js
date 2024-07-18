@@ -1,16 +1,14 @@
-document.querySelector('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const firstname = document.getElementById('first_name').value;
-    localStorage.setItem('firstname', firstname);
-    alert('Your name has been saved');
-});
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return `Hello, my name is ${this.name} and I am ${this.age} years old`;
+  }
+  console.log(this.greet());
+}
 
-document.querySelector('.submit-btn').addEventListener('click', (e) => {
-    e.preventDefault();
-    const firstname = localStorage.getItem('firstname');
-    console.log(firstname);
-});
-
+const person1 = new Person('John', 30);
+const person2 = new Person('Jane', 25);
 
 
 
