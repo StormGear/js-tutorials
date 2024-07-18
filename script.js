@@ -1,22 +1,16 @@
-localStorage.setItem('name', 'John');
-localStorage.setItem('age', 30);
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const firstname = document.getElementById('first_name').value;
+    localStorage.setItem('firstname', firstname);
+    alert('Your name has been saved');
+});
 
-// set session storage
-sessionStorage.setItem('name', 'Beth');
-sessionStorage.setItem('age', 25);
+document.querySelector('.submit-btn').addEventListener('click', (e) => {
+    e.preventDefault();
+    const firstname = localStorage.getItem('firstname');
+    console.log(firstname);
+});
 
-localStorage.removeItem('name');
-localStorage.removeItem('age');
-
-let localname = localStorage.getItem('name');
-let age = localStorage.getItem('age');
-let sessionName = sessionStorage.getItem('name');
-
-
-
-
-console.log(`Name: ${localname}, Age: ${age}`);
-console.log(`Session Name: ${sessionName}`);
 
 
 
