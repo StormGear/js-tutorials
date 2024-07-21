@@ -1,25 +1,18 @@
-const profilePrototype = {
-    message: function () {
-        return `Hello, I am ${this.firstName} ${this.lastName}`
-    },
-    setNewLastName (newLastName) {
-        this.lastName = newLastName
+document.getElementById('button').addEventListener('click', loadData);
+
+function loadData(e) {
+    console.log('Button clicked');
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'data.txt', true);
+
+    xhr.onload = function () {
+        console.log('READYSTATE', xhr.readyState);
+        console.log('STATUS', xhr.status);
+        if (this.status === 200) {
+           console.log(this.responseText);
+        }
     }
 
+    xhr.send();
 }
-
-const peter = Object.create(profilePrototype)
-peter.firstName = 'Peter'
-peter.lastName = 'William'
-peter.age = 18
-peter.setNewLastName('Doe')
-console.log(peter.message())
-
-const alan = Object.create(profilePrototype, {
-    firstName: { value: 'Alan' },
-    lastName: { value: 'Smith' },
-    age: { value: 30 }
-})
-console.log(alan.message())
-
-
