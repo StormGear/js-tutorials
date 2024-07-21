@@ -1,5 +1,5 @@
 document.getElementById('button1').addEventListener('click', loadUser)
-document.getElementById('button2').addEventListener('click', loadUsers)
+document.getElementById('button2').addEventListener('click', () => loadUsers())
 function loadUser() {
     const xhr = new XMLHttpRequest()
     xhr.open('GET', 'https://reqres.in/api/users/2', true)
@@ -22,7 +22,7 @@ function loadUser() {
     xhr.send()
 }
 
-function loadUsers() {
+const loadUsers = () => {
     const xhr = new XMLHttpRequest()
     xhr.open('GET', 'https://reqres.in/api/users?page=2', true)
     xhr.onload =  function () {
