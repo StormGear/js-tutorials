@@ -1,48 +1,55 @@
-const todos = [
-    { title: "First todo", body: "This is first todo" },
-    { title: "Second todo", body: "This is third todo" }
-]
+document.getElementById('button1').addEventListener('click', getText2)
+document.getElementById('button2').addEventListener('click', getJSON)
+document.getElementById('button3').addEventListener('click', getAPI)
 
-function createTodo(todo) {
-    return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            todos.push(todo)
-            const err = false
-            if (!err) {
-                resolve('Todo added, promise resolved')
-            } else {
-                reject('There is an error, promise rejected')
-            }
-        }, 2000)
+function getText() {
 
+    fetch('test.txt').then(function (res) {
+        return (res.text())
+    }).then(function (data) {
+        document.getElementById('output').innerText = data
+    }).catch(function (err) {
+        console.log('ERROR: ' + err)
     })
 }
 
-function getTodos() {
-    setTimeout(() => {
-        let output = ''
-        todos.forEach(function (todo) {
+function getJSON() {
+
+    fetch('todos.json').then(function (res) {
+        console.log(res.status)
+        return (res.json())
+    }).then(function (todos) {
+        let output = '';
+        todos.forEach(todo => {
             output += `<li>${todo.title}</li>`
+        });
+        document.getElementById('output').innerHTML = output
+    }).catch(function (err) {
+        console.log('ERROR: ' + err)
+    })
+}
+
+async function getText2() {
+    try {
+    const result = await fetch('test.txt')
+    const data = await result.text()
+    document.getElementById('output').innerHTML = data
+    } catch (error) {
+        console.log('ERROR: ' + error)
+    }
+}
+
+function getAPI() {
+    
+        fetch('https://api.github.com/users').then(function (res) {
+            return (res.json())
+        }).then(function (data) {
+            let output = '';
+            data.forEach(user => {
+                output += `<li>${user.login}</li>`
+            });
+            document.getElementById('output').innerHTML = output
+        }).catch(function (err) {
+            console.log('ERROR: ' + err)
         })
-        document.body.innerHTML = output
-    }, 1000)
 }
-
-// createTodo({ title: 'Third todo', body: "This is third todo" }).then((result) => {
-//     console.log(result)
-//     getTodos()
-// }).catch(function (err) {
-//     console.log(err)
-// })
-
-async function addTodo () {
-try {
-    result = await createTodo({ title: 'Third todo', body: "This is third todo" })
-    getTodos()
-    console.log(result)
-} catch (error) {
-    console.log(error)
-}
-}
-
-addTodo()
