@@ -1,55 +1,26 @@
-document.getElementById('button1').addEventListener('click', getText2)
-document.getElementById('button2').addEventListener('click', getJSON)
-document.getElementById('button3').addEventListener('click', getAPI)
-
-function getText() {
-
-    fetch('test.txt').then(function (res) {
-        return (res.text())
-    }).then(function (data) {
-        document.getElementById('output').innerText = data
-    }).catch(function (err) {
-        console.log('ERROR: ' + err)
-    })
+const greeting = name => {
+   return `Hello, ${name}!`
 }
 
-function getJSON() {
+// console.log(greeting('Hiro'));
 
-    fetch('todos.json').then(function (res) {
-        console.log(res.status)
-        return (res.json())
-    }).then(function (todos) {
-        let output = '';
-        todos.forEach(todo => {
-            output += `<li>${todo.title}</li>`
-        });
-        document.getElementById('output').innerHTML = output
-    }).catch(function (err) {
-        console.log('ERROR: ' + err)
-    })
+async function message() {
+   return 'Hello, World!'
 }
 
-async function getText2() {
-    try {
-    const result = await fetch('test.txt')
-    const data = await result.text()
-    document.getElementById('output').innerHTML = data
-    } catch (error) {
-        console.log('ERROR: ' + error)
-    }
+const message2 = async () => {
+   const res = await fetch('https://jsonplaceholder.typicode.com/users')
+
+   if (res.ok) {
+        const users = await res.json()
+        return users
+     
+   } else {
+        throw new Error('Something went wrong')
+   
+   }
 }
 
-function getAPI() {
-    
-        fetch('https://api.github.com/users').then(function (res) {
-            return (res.json())
-        }).then(function (data) {
-            let output = '';
-            data.forEach(user => {
-                output += `<li>${user.login}</li>`
-            });
-            document.getElementById('output').innerHTML = output
-        }).catch(function (err) {
-            console.log('ERROR: ' + err)
-        })
-}
+// console.log(message2());
+message2().then(msg => msg.forEach(msg => console.log(msg.name))).catch(err => console.log(err.message))
+
