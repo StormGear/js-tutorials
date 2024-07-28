@@ -1,26 +1,64 @@
-const greeting = name => {
-   return `Hello, ${name}!`
+document.getElementById('firstName').addEventListener('blur', validateFN)
+document.getElementById('lastName').addEventListener('blur', validateLN)
+document.getElementById('email').addEventListener('blur', validateEmail)
+document.getElementById('phone').addEventListener('blur', validatePhone)
+document.getElementById('zip').addEventListener('blur', validateZip)
+
+function validateFN() {
+    const firstName = document.getElementById('firstName');
+    const re = /^[a-zA-Z\s]{2,}$/
+    if (!re.test(firstName.value)) {
+        firstName.classList.add('is-invalid');
+        firstName.classList.remove('is-valid');
+    } else {
+        firstName.classList.add('is-valid');
+        firstName.classList.remove('is-invalid');
+    }
 }
-
-// console.log(greeting('Hiro'));
-
-async function message() {
-   return 'Hello, World!'
+function validateLN() {
+    const lastName = document.getElementById('lastName');
+    const re = /^[a-zA-Z\s]{2,}$/
+    if (!re.test(lastName.value)) {
+        lastName.classList.add('is-invalid');
+        lastName.classList.remove('is-valid');
+    } else {
+        lastName.classList.add('is-valid');
+        lastName.classList.remove('is-invalid');
+    }
 }
-
-const message2 = async () => {
-   const res = await fetch('https://jsonplaceholder.typicode.com/users')
-
-   if (res.ok) {
-        const users = await res.json()
-        return users
-     
-   } else {
-        throw new Error('Something went wrong')
-   
-   }
+function validateEmail() {
+    const email = document.getElementById('email');
+    const re = /^([a-zA-Z0-9_\.\-]+)@([a-zA-Z0-9_\.]+)\.[a-zA-Z]{2,5}$/
+    if (!re.test(email.value)) {
+        email.classList.add('is-invalid');
+        email.classList.remove('is-valid');
+    } else {
+        email.classList.add('is-valid');
+        email.classList.remove('is-invalid');
+    }
 }
-
-// console.log(message2());
-message2().then(msg => msg.forEach(msg => console.log(msg.name))).catch(err => console.log(err.message))
-
+function validatePhone() {
+    const phone = document.getElementById('phone');
+    //(333).444.5555
+    //333-444-5555
+    //3334445555
+    const re = /^\(?\d{3}\)?[-.]?\d{3}[-.]?\d{4}$/
+    if (!re.test(phone.value)) {
+        phone.classList.add('is-invalid');
+        phone.classList.remove('is-valid');
+    } else {
+        phone.classList.add('is-valid');
+        phone.classList.remove('is-invalid');
+    }
+}
+function validateZip() {
+    const zip = document.getElementById('zip');
+    const re = /^[0-9]{5}(-[0-9])?$/
+    if (!re.test(zip.value)) {
+        zip.classList.add('is-invalid');
+        zip.classList.remove('is-valid');
+    } else {
+        zip.classList.add('is-valid');
+        zip.classList.remove('is-invalid');
+    }
+}
