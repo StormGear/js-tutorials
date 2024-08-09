@@ -1,79 +1,53 @@
-function makeItemIterator(items) {
+const users = [
+    {
+        "id": 7,
+        "email": "michael.lawson@reqres.in",
+        "first_name": "Michael",
+        "last_name": "Lawson",
+        "avatar": "https://reqres.in/img/faces/7-image.jpg"
+    },
+    {
+        "id": 8,
+        "email": "lindsay.ferguson@reqres.in",
+        "first_name": "Lindsay",
+        "last_name": "Ferguson",
+        "avatar": "https://reqres.in/img/faces/8-image.jpg"
+    },
+    {
+        "id": 9,
+        "email": "tobias.funke@reqres.in",
+        "first_name": "Tobias",
+        "last_name": "Funke",
+        "avatar": "https://reqres.in/img/faces/9-image.jpg"
+    },
+]
+
+document.querySelector('.btn-primary').addEventListener('click', nextUser)
+
+function makeUserIterator(users) {
     let nextIndex = 0;
-    const itemIterator = {
-        next:  () => {
-            let result = nextIndex < items.length ? {
-                value: items[nextIndex++],
-                done: false
-            } : {
-                    done: true
-                }
+    const userIterator = {
+        next() {
+            let result;
+            result = nextIndex < users.length ? { value: users[nextIndex++], done: false } : { done: true }
             return result;
         }
     }
-    return itemIterator;
-}
-const itemsArr = ['Milk', 'Apple', 'Fish'];
-// const itemIterator = makeItemIterator(itemsArr);
-// console.log(itemIterator.next())
-// console.log(itemIterator.next())
-// console.log(itemIterator.next())
-// console.log(itemIterator.next())
-// console.log(itemIterator.next())
-
-// function* makeItemGenerator(items) {
-//     for (let i = 0; i < items.length; i++) {
-//         yield items[i];
-
-//     }
-// }
-// const itemGenerator = makeItemGenerator(itemsArr);
-// let result = itemGenerator.next()
-// console.log(result)
-// while (!result.done) {
-//     console.log('generator result:', result)
-//     result = itemGenerator.next()
-// }
-
-// const myObject = {
-//     *[Symbol.iterator]() {
-//         yield 1;
-//         yield 2;
-//         yield 3;
-//     },
-//     greet() {
-//         console.log('Hello')
-//     }
-// }
-
-// for (const value of myObject) {
-//     console.log('value:', value)
-// }
-
-function* asyncGenerator() {
-    const result1 = yield fetch('https://jsonplaceholder.typicode.com/posts/1');
-    console.log('Result 1:', result1)
-
-    const result2 = yield fetch('https://jsonplaceholder.typicode.com/posts/2');
-    console.log('Result 2:', result2)
+    return userIterator
 }
 
-function run(generator) {
-    const iterator = generator();
-    const handle = (result) => {
-        if (result.done) return;
-        result.value.then(res => {
-            res.json().then(data => {
-                handle(iterator.next(data))
-            }
-        )
-        })
+const userIterator = makeUserIterator(users)
+
+nextUser();
+
+function nextUser() {
+    const user = userIterator.next().value
+    console.log(user)
+    if (user !== undefined) {
+        document.querySelector('.card-title').innerText = `${user.first_name} ${user.last_name}`;
+        document.querySelector('.card-text').innerText = `email: ${user.email}`;
+        document.querySelector('.card-img-top').src = user.avatar;
+    } else {
+        window.location.reload()
     }
-    handle(iterator.next())
 }
-
-run(asyncGenerator)
-
-
-
-
