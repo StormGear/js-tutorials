@@ -22,7 +22,7 @@ const users = [
     },
 ]
 
-document.querySelector('.btn-primary').addEventListener('click', nextUser)
+document.getElementById('next').addEventListener('click', nextUser)
 
 function makeUserIterator(users) {
     let nextIndex = 0;
@@ -44,7 +44,7 @@ function nextUser() {
     const user = userIterator.next().value
     console.log(user)
     if (user !== undefined) {
-        document.querySelector('.card-title').innerText = `${user.first_name} ${user.last_name}`;
+        document.getElementsByClassName('card-title')[0].innerText = `${user.first_name} ${user.last_name}`;
         document.querySelector('.card-text').innerText = `email: ${user.email}`;
         document.querySelector('.card-img-top').src = user.avatar;
     } else {
