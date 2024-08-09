@@ -1,38 +1,15 @@
-//array destructuring
+let uniqueKey = Symbol("key");
+const obj = {
+  [uniqueKey]: "value",
+  regularKey: "regularValue"
+};
+// uniqueKey = null;
+// console.log(obj[uniqueKey]); // "value"
+// console.log(uniqueKey.description); // "regularValue"
 
+const person = {
+    name: "John",
+    [Symbol("id")]: 12345
+  };
 
-// [a, b, ...c] = [1, 2, 3, 4, 5, 6]
-// console.log(a);
-// console.log(c);
-// [user1, user2, user3] = ['Peter', 'Alan', 'John'];
-// console.log(user2);
-// function getItems() {
-//     return ['milk', 'fish', 'apple']
-// }
-// [item1, item2, item3] = getItems();
-// console.log(item2);
-//object destructuring
-// ({ b, a } = { a: "Mary", b: "Amy" });
-// console.log(a)
-// const user = {
-
-//     "id": 7,
-//     "email": "michael.lawson@reqres.in",
-//     "first_name": "Michael",
-//     "last_name": "Lawson",
-//     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"
-
-// }
-
-// const id = user.id;
-// const { email, avatar } = user;
-// console.log(email)
-// console.log(avatar)
-
-function add() {
-    result = a + b;
-    return result;
-}
-
-const socket = require('socket');
-console.log(here)
+console.log(person.Symbol); // undefined
