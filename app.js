@@ -1,24 +1,35 @@
-const set1 = new Set([1, 2, 3, 4, 5]);
-set1.add({ name: 'John' });
-// console.log(set1)
-// set1.forEach((element) => console.log(element))
-
-// for (const item of set1) {
-//     console.log(item);
+// const user = {
+//     firstname: 'John',
+//     secret: 'You are a good person',
+//     getSecret() {
+//         return `Hello ${this.firstname}, the secret message is ${this.secret}.`;
+//     }
 // }
 
-// for (const item of set1.values()) {
-//     console.log(item);
-// }
+// console.log(user.getSecret()); 
+// console.log(user.secret);
 
-// for (const item of set1.keys()) {
-//     console.log(item);
-// }
+// const user = (function () {
+//     let name = 'John';
+//     let secret = 'You are a good person';
+//     const getSecret = function () {
+//         return `Hello ${name}, the secret message is ${secret}.`;
+//     }
+//     return {
+//         callGetSecret() {
+//             return getSecret();
+//         } 
+//     }
+// })()
 
-// for (const [key, value] of set1.entries()) {
-//     console.log(value);
-// }
-
-let arr = Array.from(set1)
-console.log(arr)
-
+const user = (function () {
+    let name = 'John';
+    let secret = 'You are a good person';
+    const getSecret = function () {
+        return `Hello ${name}, the secret message is ${secret}.`;
+    }
+    return {
+       getSecret
+    }
+})()
+console.log(user.getSecret());
