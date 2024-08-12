@@ -1,39 +1,24 @@
-const users = new  Map();
-const boys =   {
-    '1': 'John',
-    '2': 'Peter',
-    '3': 'Mary',
-}
+const set1 = new Set([1, 2, 3, 4, 5]);
+set1.add({ name: 'John' });
+// console.log(set1)
+// set1.forEach((element) => console.log(element))
 
-users.set('1', 'John');
-users.set('2', 'Peter');
-users.set('3', 'Mary');
-// users.set(function Peter() {}, {'Peter':'here'});
-// console.log(users.has('2')); // true
-// console.log(users.get('1')); // John
-// console.log(users.size); // 2
-// console.log(typeof boys); // object
-// console.log(users.delete('1')); // true
-// console.log(users.size); // 2
-
-// for (const [key, value] of users) {
-//     console.log(key + ' = ' + value);
+// for (const item of set1) {
+//     console.log(item);
 // }
 
-for (const key of users.keys()) {
-    console.log(key);
-}
+// for (const item of set1.values()) {
+//     console.log(item);
+// }
 
-for (const value of users.values()) {
-    console.log(value);
-}
+// for (const item of set1.keys()) {
+//     console.log(item);
+// }
 
-users.forEach((value, key) => {
-    console.log(key + ' = ' + value);
-});
+// for (const [key, value] of set1.entries()) {
+//     console.log(value);
+// }
 
-const usersArray = Array.from(users.keys()); 
-console.log(usersArray);
+let arr = Array.from(set1)
+console.log(arr)
 
-const keysArray = Array.from(users.values()); 
-console.log(keysArray);
