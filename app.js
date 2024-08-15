@@ -1,85 +1,77 @@
-class TodoList {
-    constructor() {
-        /** @type {string[]} */
-        this.todos = [];
-    }
-   
-    /**
-     * Adds a todo item to the list.
-     * @param {string} todo - The todo item to add.
-     */
-    add(todo) {
-        this.todos.push(todo);
-    }
-    
-    /**
-     * Removes a todo from the list.
-     * 
-     * @param {any} todo - The todo item to be removed.
-     */
-    remove(todo) {
-        this.todos = this.todos.filter(item => item !== todo);
-    }
-
-    /**
-     * Retrieves the todos.
-     *
-     * @returns {string[]} The todos.
-     */
-    get() {
-        return this.todos;
+/**
+ * Class representing a MemberFactory.
+ * @class
+ */
+class MemberFactory {
+/**
+ * Creates a new member object based on the provided name and type.
+ * 
+ * @param {string} name - The name of the member.
+ * @param {string} type - The type of the member (basic, standard, premium).
+ * @returns {object} - The newly created member object.
+ */
+  createMember(name, type) {
+    let member;
+    if (type === 'basic') {
+      member = new BasicMembership(name);
+    } else if (type === 'standard') {
+      member = new StandardMembership(name);
+    } else if (type === 'premium') {
+      member = new PremiumMembership(name);
     }
 
-    /**
-     * Returns the number of items that have been added to the list.
-     *
-     * @returns {string} The number of items that have been added.
-     */
-    viewList() {
-       return `${this.todos.length} items have been added`;
+    member.type = type;
+
+    member.profile = function ()  {
+      console.log(`This is the user ${this.name} with subscription type (${this.type}) at a cost of ${this.cost}`);
     }
+    return member;
+  }
 }
 
-// const todoList = new TodoList();
-// todoList.add('Learn JavaScript');
-// todoList.add('Learn React');
-
-// // console.log(todoList.viewList()); 
-
-// const todoList2 = new TodoList();
-// todoList2.add('Learn Angular');
-// todoList2.add('Learn Vue');
-
-// console.log(todoList2.viewList());
-
-// console.log(todoList === todoList2); 
-
-class SingleTodoList {
-    constructor() {
-        if (SingleTodoList.instance == null) {
-            this.todos = [];
-            SingleTodoList.instance = this;
-        }
-        return SingleTodoList.instance;
-    }
-
-    getInstance() {
-        return SingleTodoList.instance;
-    }
-
-    add(todo) {
-        this.todos.push(todo);
-    }
-
-    viewList() {
-        return `${this.todos.length} items have been added`;
-     }
+/**
+ * Represents a basic membership.
+ * @class
+ */
+class BasicMembership {
+  constructor(name) {
+    this.name = name;
+    this.cost = '₵5';
+  }
 }
 
-let todoList = new SingleTodoList();
-let todoList2 = new SingleTodoList();
-todoList.add('Learn JavaScript');
-todoList2.add('Learn React');
-console.log(todoList.viewList());
-console.log(todoList2.viewList());
-console.log(todoList === todoList2);
+/**
+ * Represents a standard membership.
+ * @class
+ */
+class StandardMembership {
+  constructor(name) {
+    this.name = name;
+    this.cost = '₵15';
+  }
+}
+
+/**
+ * Represents a premium membership.
+ * @class
+ */
+class PremiumMembership {
+    constructor(name) {
+        this.name = name;
+        this.cost = '₵25';
+    }
+ }
+
+const members = [];
+const factory = new MemberFactory();
+const alan = factory.createMember('Alan', 'premium');
+const kofi = factory.createMember('Kofi', 'standard');
+const abena = factory.createMember('Abena', 'basic');
+alan.profile();
+members.push(alan);
+members.push(kofi);
+members.push(abena);
+console.log(members);
+members.forEach(member => {
+    member.profile();
+});
