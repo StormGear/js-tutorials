@@ -1,77 +1,55 @@
-/**
- * Class representing a MemberFactory.
- * @class
- */
-class MemberFactory {
-/**
- * Creates a new member object based on the provided name and type.
- * 
- * @param {string} name - The name of the member.
- * @param {string} type - The type of the member (basic, standard, premium).
- * @returns {object} - The newly created member object.
- */
-  createMember(name, type) {
-    let member;
-    if (type === 'basic') {
-      member = new BasicMembership(name);
-    } else if (type === 'standard') {
-      member = new StandardMembership(name);
-    } else if (type === 'premium') {
-      member = new PremiumMembership(name);
+/* The `Click` class in JavaScript allows for subscribing, unsubscribing, and executing functions as
+observers. */
+class Click {
+    constructor() {
+    this.observers = [];
     }
 
-    member.type = type;
-
-    member.profile = function ()  {
-      console.log(`This is the user ${this.name} with subscription type (${this.type}) at a cost of ${this.cost}`);
+  /**
+   * The `subscribe` function adds a new function to the list of observers and logs a message
+   * indicating the subscription.
+   * @param func - The `func` parameter in the `subscribe` method is a function that you want to
+   * subscribe to. When you call the `subscribe` method and pass a function as an argument, that
+   * function will be added to the list of observers in the `observers` array.
+   */
+    subscribe(func) {
+        if (this.observers.includes(func)) {
+            console.log(`Already subscribed to this function: ${func.name}`);
+            return;
+        }
+        this.observers.push(func);
+        console.log(`Subscribed to this function: ${func.name}`);
     }
-    return member;
-  }
-}
 
-/**
- * Represents a basic membership.
- * @class
- */
-class BasicMembership {
-  constructor(name) {
-    this.name = name;
-    this.cost = '₵5';
-  }
-}
-
-/**
- * Represents a standard membership.
- * @class
- */
-class StandardMembership {
-  constructor(name) {
-    this.name = name;
-    this.cost = '₵15';
-  }
-}
-
-/**
- * Represents a premium membership.
- * @class
- */
-class PremiumMembership {
-    constructor(name) {
-        this.name = name;
-        this.cost = '₵25';
+    unsubscribe(func) {
+        if (!this.observers.includes(func)) {
+            console.log(`Not subscribed to this function: ${func.name}`);
+            return;
+        }
+        this.observers = this.observers.filter(observer => observer !== func);
+        console.log(`Unsubscribed from this function: ${func.name}`);
     }
- }
 
-const members = [];
-const factory = new MemberFactory();
-const alan = factory.createMember('Alan', 'premium');
-const kofi = factory.createMember('Kofi', 'standard');
-const abena = factory.createMember('Abena', 'basic');
-alan.profile();
-members.push(alan);
-members.push(kofi);
-members.push(abena);
-console.log(members);
-members.forEach(member => {
-    member.profile();
-});
+    execute() {
+        if (this.observers.length === 0) {
+            console.log('No observers to execute');
+            return;
+        }
+        this.observers.forEach(observer => observer());
+    }
+}
+
+const click = new Click();
+document.querySelector('.sub1').addEventListener('click', () => click.subscribe(getCurrentTime));
+document.querySelector('.unsub1').addEventListener('click', () => click.unsubscribe(getCurrentTime));
+document.querySelector('.sub2').addEventListener('click', () => click.subscribe(getCurrentDate));
+document.querySelector('.unsub2').addEventListener('click', () => click.unsubscribe(getCurrentDate));
+document.querySelector('.exe').addEventListener('click', () => click.execute());
+
+function getCurrentTime() {
+    console.log(`Current time is ${new Date().toLocaleTimeString()}`);
+}
+
+function getCurrentDate() {
+    console.log(`Current date is ${new Date().toLocaleDateString()}`);
+}
