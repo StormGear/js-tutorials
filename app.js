@@ -1,53 +1,57 @@
-class User {
-  constructor(name) {
-    this.name = name;
-    this.chatroom = null;
-  }
 
-    send(message, to) {
-        this.chatroom.send(message, this, to);
+
+/* The PageState class manages the state of a webpage and allows for switching between different
+states. */
+class PageState {
+    constructor() {
+        this.currentState = new homeState(this);
     }
-
-    receive(message, from) {
-        console.log(`${from.name} to ${this.name}: ${message}`);
+    init() {
+        this.change(new homeState)
+    }
+    change(state) {
+        this.currentState = state;
+        document.querySelector('#currentState').textContent = `Current State: ${state.constructor.name}`;
     }
 }
 
-class Chatroom {
-  constructor() {
-    this.users = {};
-  }
-
-  register(user) {
-    this.users[user.name] = user;
-    user.chatroom = this;
-  }
-
-  send(message, from, to) {
-    if (to) {
-      // Single user message
-      to.receive(message, from);
-    } else {
-      // Mass message
-      for (key in this.users) {
-        if (this.users[key] !== from) {
-          this.users[key].receive(message, from);
-        }
-      }
+class homeState {
+    constructor(page) {
+        document.querySelector('#heading').textContent = null;
+        document.querySelector('#content').innerHTML = '<h1>Home</h1>';
     }
-  }
 }
 
-const Kofi = new User('Kofi');
-const Ama = new User('Ama');
-const Kwame = new User('Kwame');
-const chatroom = new Chatroom();
-console.log('Kofi before being registered in a chatroom', Kofi);
-// Register Kofi in the chatroom
-chatroom.register(Kofi);
-chatroom.register(Ama);
-chatroom.register(Kwame);
-console.log('Kofi after being registered in a chatroom', Kofi);
-Kofi.send('Hello Ama', Ama);
+class aboutState {
+    constructor() {
+        document.querySelector('#heading').textContent = 'About page';
+        document.querySelector('#content').innerHTML = '<p>about</p>';
+    }
+}
+
+class contactState {
+    constructor() {
+        document.querySelector('#heading').textContent = 'Contact page';
+        document.querySelector('#content').innerHTML = '<p>contact<p>';
+    }
+}
+
+
+const page = new PageState();
+page.init();
+
+const home = document.getElementById('home'),
+about = document.getElementById('about'),
+contact = document.getElementById('contact');
+
+home.addEventListener('click', e => {
+    page.change(new homeState)
+})
+about.addEventListener('click', e => {
+    page.change(new aboutState)
+})
+contact.addEventListener('click', e => {
+    page.change(new contactState)
+})
 
 
